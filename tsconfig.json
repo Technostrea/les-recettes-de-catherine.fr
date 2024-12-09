@@ -2,6 +2,15 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "@app/core/*":["src/app/core/*"],
+      "@app/routes/*":["src/app/routes/*"],
+      "@app/shared/*":["src/app/shared/*"],
+      "@assets/*":["src/assets/*"],
+      "@env/*":["src/environments/*"],
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

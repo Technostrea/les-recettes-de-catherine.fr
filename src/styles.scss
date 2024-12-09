@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'ubuntu';
+  src: url('/assets/fonts/ubuntu/Ubuntu-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: white;
+  font-family: 'ubuntu',sans-serif;
+}
+
+.content {
+  flex: 1; /* Cette zone grandit pour remplir l'espace restant */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

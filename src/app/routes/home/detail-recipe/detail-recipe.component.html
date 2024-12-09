@@ -1,0 +1,45 @@
+<app-header/>
+
+<section
+  class="mt-[150px] flex-1 flex flex-col my-8 space-y-8 min-h-[60vh] w-full place-content-center place-items-center gap-[10%] bg-[#fff] p-4 px-[20%] max-md:flex-col max-md:gap-[4%] max-md:px-[5%]">
+  <div class="w-full max-w-2xl mx-auto">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+         class="text-[#be0626] cursor-pointer w-10" (click)="location.back()">
+      <path fill-rule="evenodd"
+            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z"
+            clip-rule="evenodd"/>
+    </svg>
+  </div>
+
+  @if (recipe) {
+    <div class="max-w-2xl mx-auto flex flex-col space-y-8">
+      <img
+        src="./assets/images/homepage/dinner.jpg"
+        alt="logo"
+        class="object-cover w-[1000px] aspect-[3/2]"
+      />
+      <h2 class="text-2xl font-bold mb-4">{{ recipe.name.toUpperCase() }}</h2>
+      <div class="flex max-md:flex-col justify-around">
+        <p class="mb-2"><strong>Categorie:</strong> {{ recipe.category }}</p>
+        <p class="mb-2"><strong>Difficulté:</strong> {{ recipe.difficulty }}</p>
+        <p class="mb-2"><strong>Temps :</strong> {{ recipe.prepTime | timeFormat }}</p>
+      </div>
+      @if (recipe.description) {
+        <h3 class="text-xl font-semibold mt-4 mb-2">Description:</h3>
+        <p> {{ recipe.description }}</p>
+      }
+      <h3 class="text-xl font-semibold mt-4 mb-2">Ingredients:</h3>
+      <ul class="list-disc pl-5 mb-4">
+        @for (ingredient of recipe.ingredients; track ingredient) {
+          <li>{{ ingredient.name }}</li>
+        }
+      </ul>
+      <h3 class="text-xl font-semibold mt-4 mb-2">Instructions:</h3>
+      <ol class="list-decimal pl-5">
+        @for (step of recipe.steps; track step) {
+          <li>{{ step.name }}</li>
+        }
+      </ol>
+    </div>
+  }
+</section>
