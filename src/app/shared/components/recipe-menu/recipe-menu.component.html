@@ -1,0 +1,48 @@
+<section class="flex w-full flex-col place-content-center place-items-center bg-[#fff] p-[5%] max-md:px-[5%]">
+  <img
+    src="assets/logo/logo.svg"
+    alt="kitchen"
+    class="h-[300px] w-[300px] object-cover max-md:h-[150px] max-md:w-[150px] hover:scale-125 transition-all duration-500 cursor-pointer"
+  />
+
+  <h2 class="text-xl italic">
+    Découvrez les saveurs françaises authentiques
+  </h2>
+  <h3 class="primary-text-color text-4xl font-semibold">
+    Découvrez notre selection
+  </h3>
+
+  <div class="mt-[5%] flex w-full place-content-center gap-5 max-md:flex-wrap">
+    <div class="flex max-w-[650px] flex-col gap-5 overflow-clip md:max-h-[700px]">
+      <div class="flex gap-5 max-md:flex-col">
+        <div class="menu-item-container relative h-[450px] w-[80%] cursor-pointer overflow-clip rounded-lg max-md:w-full">
+          <img
+            src="assets/images/homepage/breakfast.jpg"
+            alt="authentic wine"
+            class="h-full w-full object-cover transition-[scale] duration-[0.4s]"
+          />
+
+          <a [routerLink]="['entrees']" class="menu-btn text-xl ">Entrées</a>
+        </div>
+        <div class="menu-item-container relative h-[450px] w-[80%] cursor-pointer overflow-clip rounded-lg max-md:w-full">
+          <img
+            src="assets/images/homepage/dinner.jpg"
+            alt="Lunch"
+            class="h-full w-full object-cover transition-[scale] duration-[0.4s]"
+          />
+
+          <a [routerLink]="['plats']" class="menu-btn text-xl">Plats</a>
+        </div>
+      </div>
+      <div class="menu-item-container relative h-[240px] w-full cursor-pointer overflow-clip rounded-lg">
+        <img
+          src="assets/images/homepage/dessert.jpg"
+          alt="authentic wine"
+          class="h-full w-full object-cover transition-[scale] duration-[0.4s]"
+        />
+
+        <a [routerLink]="['desserts']" class="menu-btn text-xl">Desserts</a>
+      </div>
+    </div>
+  </div>
+</section>

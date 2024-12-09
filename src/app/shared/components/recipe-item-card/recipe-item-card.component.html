@@ -1,0 +1,27 @@
+@if (recipe != undefined) {
+  <a [routerLink]="['/detail-recipe', recipe.name.toLowerCase().replace(' ','_')]" [state]="{recipe}">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="relative">
+        <img [src]="recipe.imageUrl || 'assets/logo/logo.jpg'" [alt]="recipe.name"
+             class="w-full min-w-[300px] h-48 object-cover">
+
+        <div class="absolute top-2 right-2 bg-black bg-opacity-50 text-white text-xs px-3 py-1 rounded-lg mx-1.5">
+          {{ recipe.prepTime | timeFormat }}
+        </div>
+      </div>
+      <div class="p-4">
+        <h3 class="text-xl font-semibold mb-2">{{ recipe.name }}</h3>
+        <p class="text-gray-600 mb-4">Difficulté: {{ recipe.difficulty }}</p>
+        <a [routerLink]="['/detail-recipe', recipe.name.toLowerCase().replace(' ','_')]" [state]="{recipe}"
+           class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
+          Voir la recette
+        </a>
+      </div>
+    </div>
+  </a>
+}
+
+
+
+
+
