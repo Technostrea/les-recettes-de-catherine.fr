@@ -3,14 +3,15 @@
 <section
   class="mt-[150px] flex-1 flex flex-col my-8 space-y-8 min-h-[60vh] w-full place-content-center place-items-center gap-[10%] bg-[#fff] p-4 px-[20%] max-md:flex-col max-md:gap-[4%] max-md:px-[5%]">
 
-  <app-search-and-filter [recipes]="recipes" [category]="'entree'.toLowerCase()" (filteredRecipesOut)="filterRecipes($event)"/>
+  <app-search-and-filter [category]="'entree'.toLowerCase()"  (filteredRecipesOut)="filterBySearchRecipes($event)"
+                         (filteredByCategoryOut)="filterByCategoryRecipes($event)"/>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-    @for (recipe of recipes; track recipe.id) {
+    @for (recipe of recipes().content | searchFilter:searchTerm():selectedCategory(); track recipe.id) {
       <app-recipe-item-card [recipe]="recipe"/>
     } @empty {
-      <p>Aucune recette trouvée</p>
+      <p>Aucune recette d'entrée trouvée</p>
     }
 
   </div>

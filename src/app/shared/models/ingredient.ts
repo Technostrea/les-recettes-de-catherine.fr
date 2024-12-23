@@ -1,4 +1,5 @@
 export interface Ingredient {
-  id? : string;
+  idIngredient? : string;
   name: string;
+  ingredientRecipe?: string;
 }

@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {SearchAndFilterComponent} from "@app/shared/features/search-and-filter/search-and-filter.component";
 import {RecipeItemCardComponent} from "@app/shared/components/recipe-item-card/recipe-item-card.component";
 import {Recipe} from "@app/shared/models/recipe";
 import {HeaderComponent} from "@app/shared/components/header/header.component";
+import {RecipeService} from "@app/core/services/recipe/recipe.service";
+import {RootResponse} from "@app/shared/models/root-response";
+import {UntilDestroy} from "@ngneat/until-destroy";
+import {FooterComponent} from "@app/shared/components/footer/footer.component";
+import {SearchFilterPipe} from "@app/shared/pipes/search-filter/search-filter.pipe";
 
 @Component({
   selector: 'app-explore-recipes',
@@ -10,40 +15,34 @@ import {HeaderComponent} from "@app/shared/components/header/header.component";
   imports: [
     SearchAndFilterComponent,
     RecipeItemCardComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    SearchFilterPipe
   ],
   templateUrl: './explore-recipes.component.html',
   styleUrl: './explore-recipes.component.scss'
 })
-export class ExploreRecipesComponent {
-  recipes: Recipe[] = [
-    {
-      id: "1",
-      name: 'Pate Carbonara',
-      category: 'plat',
-      difficulty: 'facile',
-      prepTime: 30,
-      imageUrl: "",
-      description:"",
-      ingredients: [
-        {name:'400g spaghetti'},
-        {name:'200g pancetta'},
-        {name:'4 large eggs'},
-        {name:'100g Parmesan cheese, grated'},
-        {name:'Salt and black pepper to taste'},
-      ],
-      steps: [
-        {name:'Cook the spaghetti in a large pot of salted boiling water until al dente.'},
-        {name:'While the pasta is cooking, fry the pancetta in a large pan until crispy.'},
-        {name:'In a bowl, whisk together the eggs, grated Parmesan, salt, and pepper.'},
-        {name:'Drain the cooked pasta and add it to the pan with the pancetta.'},
-        {name:'Remove the pan from heat and quickly stir in the egg mixture.'},
-        {name:'Serve immediately with extra grated Parmesan on top.'},
-      ],
-    }
-  ];
+@UntilDestroy()
+export class ExploreRecipesComponent implements OnInit {
+  protected recipeService = inject(RecipeService);
+  protected recipes = signal<RootResponse<Recipe>>({} as RootResponse<Recipe>)
 
-  filterRecipes($event : Recipe[]) {
-    this.recipes = $event
+  searchTerm = signal<string>('');
+  selectedCategory= signal<string>('');
+
+
+  ngOnInit() {
+    this.recipeService.getRecipesPaginate(0, 10).subscribe(value => {
+      this.recipes.set(value);
+    });
+
+  }
+
+  filterBySearchRecipes($event: string) {
+    this.searchTerm.set($event)
+  }
+
+  filterByCategoryRecipes($event: string) {
+    this.selectedCategory.set($event)
   }
 }

@@ -13,33 +13,45 @@
 
   @if (recipe) {
     <div class="max-w-2xl mx-auto flex flex-col space-y-8">
-      <img
-        src="./assets/images/homepage/dinner.jpg"
-        alt="logo"
-        class="object-cover w-[1000px] aspect-[3/2]"
-      />
+      @if (recipe.picture){
+
+        <img
+          src="assets/images/homepage/dinner.jpg"
+          alt="logo"
+          class="object-cover w-[1000px] aspect-[3/2]"
+        />
+      } @else {
+
+        <img
+          src="assets/logo/logo.png"
+          alt="logo"
+          class=" w-[1000px] aspect-[3/2] text-gray-400"
+        />
+      }
       <h2 class="text-2xl font-bold mb-4">{{ recipe.name.toUpperCase() }}</h2>
       <div class="flex max-md:flex-col justify-around">
-        <p class="mb-2"><strong>Categorie:</strong> {{ recipe.category }}</p>
-        <p class="mb-2"><strong>Difficulté:</strong> {{ recipe.difficulty }}</p>
-        <p class="mb-2"><strong>Temps :</strong> {{ recipe.prepTime | timeFormat }}</p>
+        <p class="mb-2"><strong>Categorie:</strong> {{ recipe.categorieRecetteEnum }}</p>
+        <p class="mb-2"><strong>Temps de préparation:</strong> {{ recipe.preparationTimeMinutes | timeFormat }}</p>
+        <p class="mb-2"><strong>Temps de cuisson :</strong> {{ recipe.cookingTimeMinutes | timeFormat }}</p>
       </div>
-      @if (recipe.description) {
+      @if (recipe.tips) {
         <h3 class="text-xl font-semibold mt-4 mb-2">Description:</h3>
-        <p> {{ recipe.description }}</p>
+        <p> {{ recipe.tips }}</p>
       }
       <h3 class="text-xl font-semibold mt-4 mb-2">Ingredients:</h3>
       <ul class="list-disc pl-5 mb-4">
-        @for (ingredient of recipe.ingredients; track ingredient) {
+        @for (ingredient of recipe.ingredientRecipe; track ingredient) {
           <li>{{ ingredient.name }}</li>
         }
       </ul>
       <h3 class="text-xl font-semibold mt-4 mb-2">Instructions:</h3>
       <ol class="list-decimal pl-5">
         @for (step of recipe.steps; track step) {
-          <li>{{ step.name }}</li>
+          <li>{{ step.description }}</li>
         }
       </ol>
     </div>
   }
 </section>
+
+<app-footer/>

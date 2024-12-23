@@ -1,0 +1,41 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="recipeForm" class="space-y-6 px-4 max-w-sm mx-auto font-[sans-serif]">
+  <div class="flex items-center">
+    <label class="text-gray-400 w-36 text-sm">Nom </label>
+    <input formControlName="name" type="text" placeholder="Nom de la recette"
+           class="px-2 py-2 w-full border-b-2 focus:border-[#333] outline-none text-sm bg-white" />
+  </div>
+
+  <div class="flex items-center">
+    <label class="text-gray-400 w-36 text-sm">Categorie</label>
+    <select formControlName="categorieRecetteEnum" class="px-2 py-2 w-full border-b-2 focus:border-[#333] outline-none text-sm bg-white">
+      <option value="">Selectionner une cathegorie</option>
+      <option value="ENTREE">Entrée</option>
+      <option value="PLAT">Plat</option>
+      <option value="DESSERT">Dessert</option>
+    </select>
+  </div>
+
+  <div class="flex items-center">
+    <label class="text-gray-400 w-36 text-sm">Temps de préparation</label>
+    <input formControlName="preparationTimeMinutes"  type="number" placeholder="1"
+           class="px-2 py-2 w-full border-b-2 focus:border-[#333] outline-none text-sm bg-white" />
+  </div>
+  <small class="text-gray-400 text-xs italic">en minutes</small>
+
+  <div class="flex items-center">
+    <label class="text-gray-400 w-36 text-sm">Temps de cuisson </label>
+    <input formControlName="cookingTimeMinutes"  type="number" placeholder="1"
+           class="px-2 py-2 w-full border-b-2 focus:border-[#333] outline-none text-sm bg-white" />
+  </div>
+  <small class="text-gray-400 text-xs italic">en minutes</small>
+
+  <div class="flex items-center">
+    <label class="text-gray-400 w-36 text-sm">Petits conseils</label>
+    <textarea  formControlName="tips"  placeholder="les petits conseils du chef" rows="4"
+               class="px-2 py-2 w-full border-b-2 focus:border-[#333] outline-none text-sm bg-white" ></textarea>
+  </div>
+  <small class="text-gray-400 text-xs italic">facultatif</small>
+
+  <button type="submit"
+          class="!mt-8 px-6 py-2 w-full bg-[#333] hover:bg-[#444] text-sm text-white mx-auto block">Submit</button>
+</form>
