@@ -1,5 +1,4 @@
 import {Component, Input, OnInit, output} from '@angular/core';
-import {Recipe} from "@app/shared/models/recipe";
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -12,31 +11,25 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './search-and-filter.component.scss'
 })
 export class SearchAndFilterComponent implements OnInit {
-  @Input({required: true}) recipes: Recipe[] = [];
   @Input({required: true}) category: string = '';
 
-  filteredRecipes: Recipe[] = [];
   searchTerm: string = '';
   selectedCategory: string = '';
-  selectedDifficulty: string = '';
-  filteredRecipesOut = output<Recipe[]>()
 
-  filterRecipes() {
-    this.filteredRecipes = this.recipes.filter((recipe) => {
-      const nameMatch = recipe.name.toLowerCase().includes(this.searchTerm.toLowerCase());
-      const categoryMatch = !this.selectedCategory || recipe.category === this.selectedCategory;
-      const selectedDifficulty = !this.selectedDifficulty || recipe.difficulty === this.selectedDifficulty;
-      return nameMatch && categoryMatch && selectedDifficulty;
-    });
+  filteredRecipesOut = output<string>()
+  filteredByCategoryOut = output<string>()
 
-    this.filteredRecipesOut.emit(this.filteredRecipes);
-
+  ngOnInit() {
+    this.selectedCategory = this.category;
+    this.filteredByCategoryOut.emit(this.selectedCategory.toUpperCase());
   }
 
-  ngOnInit(): void {
-    this.selectedCategory = this.category
-    this.filteredRecipes = this.recipes;
+  onSearchChange(): void {
+    this.filteredRecipesOut.emit(this.searchTerm);
   }
 
+  onCategoryChange(): void {
+    this.filteredByCategoryOut.emit(this.selectedCategory.toUpperCase());
+  }
 
 }

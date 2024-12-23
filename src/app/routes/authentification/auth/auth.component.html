@@ -1,1 +1,38 @@
-<p>auth works!</p>
+<section class="flex min-h-full">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="card bg-ui tls-shadow-md m-auto h-fit w-full max-w-sm p-1">
+
+    <div class="p-8">
+      <div>
+        <h1 class="text-title mb-1 text-xl font-semibold">
+          <a [routerLink]="['/']" class="bg-white">
+            <img
+              src="./assets/logo/logo.png"
+              alt="logo"
+              class="object-cover h-full w-full aspect-[3/2] bg-white"
+            />
+          </a>
+        </h1>
+        <p class="text-2xl font-ubuntu font-bold uppercase ">Connexion</p>
+      </div>
+
+      <div class="space-y-6 my-8">
+        <div class="field flex-col flex">
+          <label for="email2" class="text-title text-sm"> Email</label>
+          <input formControlName="email" type="email" required name="email2" id="email2" class="input sz-md variant-mixed min-w-full" />
+        </div>
+
+        <div class="field">
+          <div class="flex justify-between">
+            <label for="pwd" class="text-title text-sm"> Mot de passe</label>
+            <a [routerLink]="['']" class="link intent-info variant-ghost text-sm"> Mot de passe oublié ?</a>
+          </div>
+          <input formControlName="password" type="password" required name="pwd" id="pwd" class="input sz-md variant-mixed min-w-full" />
+        </div>
+
+        <button type="submit" class="btn variant-primary sz-md w-full">Se connecter</button>
+      </div>
+    </div>
+
+  </form>
+</section>

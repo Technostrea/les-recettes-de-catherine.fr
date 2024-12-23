@@ -18,6 +18,11 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "pocketbase": "^0.24.0",
+    "ngx-toastr": "17.0.2",
+    "primeicons": "7.0.0",
+    "primeng": "17.18.10",
+    "@ngneat/until-destroy": "10.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
