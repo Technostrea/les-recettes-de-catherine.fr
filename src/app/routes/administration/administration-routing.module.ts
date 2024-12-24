@@ -7,6 +7,7 @@ import {IngredientListComponent} from "@app/routes/administration/ingredient-lis
 import {IngredientStoreComponent} from "@app/routes/administration/ingredient-store/ingredient-store.component";
 import {authGuard} from "@app/core/guards/authentication/auth.guard";
 import {ProfilComponent} from "@app/routes/administration/profil/profil.component";
+import {DashboardComponent} from "@app/routes/administration/dashboard/dashboard.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -15,6 +16,8 @@ const routes: Routes = [
     component: AdministrationComponent,
     canActivate: [authGuard],
     children: [
+      {path: '', redirectTo: 'dashboard',pathMatch:'full'},
+      {path: 'dashboard', title: 'Tableau de bord', component: DashboardComponent},
       {path: 'recipe-list', title: 'Mes recettes', component: RecipeListComponent},
       {path: 'recipe-store', title: 'Mettre à jour une recette', component: RecipeStoreComponent},
       {path: 'ingredient-list', title: 'Mes ingredients', component: IngredientListComponent},

@@ -13,6 +13,8 @@ import {provideAnimations} from "@angular/platform-browser/animations";
 import {provideHttpClient, withFetch} from "@angular/common/http";
 import {TemplatePageTitleStrategy} from "@app/core/strategies/TemplatePageTitleStrategy";
 import {provideToastr} from "ngx-toastr";
+import player from 'lottie-web';
+import {provideLottieOptions} from "ngx-lottie";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,6 +31,9 @@ export const appConfig: ApplicationConfig = {
     {provide: TitleStrategy, useClass: TemplatePageTitleStrategy},
     provideAnimations(),
     provideHttpClient(withFetch()),
+    provideLottieOptions({
+      player: () => player,
+    }),
     provideToastr({
       timeOut: 10000,
       positionClass: 'toast-top-right',
