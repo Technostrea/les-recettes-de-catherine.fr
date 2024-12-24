@@ -24,6 +24,12 @@ export class AuthComponent implements OnInit{
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
 
+  showPassword: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   loginForm = this.formBuilder.group({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
