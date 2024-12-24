@@ -1,0 +1,1 @@
+import{y as e}from"./chunk-J2IPMSOX.js";var a=(()=>{class r{transform(t){if(t==null||t<0)return"Invalid time";let i=Math.floor(t/60),n=t%60;return`${i}h${n.toString().padStart(2,"0")}`}static{this.\u0275fac=function(i){return new(i||r)}}static{this.\u0275pipe=e({name:"timeFormat",type:r,pure:!0,standalone:!0})}}return r})();export{a};
