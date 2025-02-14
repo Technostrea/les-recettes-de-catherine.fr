@@ -44,7 +44,9 @@
           <select id="ingredient-unity" formControlName="unity"
                   class="px-2 py-2  border-b-2 focus:border-[#333] outline-none text-sm bg-white">
             <option value="">Selectionnez une unité</option>
-            <option value="CUILLERE_CAFE">cuillere à café</option>
+            @for (unity of unities; track unity.symbol) {
+              <option value="{{unity.symbol.toUpperCase()}}">{{ unity.name }}</option>
+            }
           </select>
         </div>
 

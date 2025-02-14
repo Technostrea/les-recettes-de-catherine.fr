@@ -22,7 +22,28 @@ export class RecipeService {
     return this.httpClient.get<RootResponse<Recipe>>(`${this.recipesEndPoint.GET_ALL_RECIPE_PAGINATE(page, size)}`)
   }
 
-  createRecipe(recipeDto: RecipeDto | any ): Observable<Recipe> {
+  createRecipe(recipeDto: RecipeDto | any): Observable<Recipe> {
     return this.httpClient.post<Recipe>(`${this.recipesEndPoint.POST_STORE_RECIPE()}`, recipeDto);
   }
+
+  updateRecipe(idRecipe: string, recipeDto: RecipeDto | any): Observable<Recipe> {
+
+    const recipeDtoWithIdRecipe = {
+      ...recipeDto,
+      idRecipe
+    };
+
+    return this.httpClient.put<Recipe>(`${this.recipesEndPoint.PUT_RECIPE(idRecipe)}`, recipeDtoWithIdRecipe);
+  }
+
+  deleteRecipe(idRecipe: string){
+    return this.httpClient.delete<Recipe>(`${this.recipesEndPoint.DELETE_RECIPE(idRecipe)}`);
+  }
+
+  uploadRecipePicture(idRecipe: string, file: File): Observable<void> {
+    const formData = new FormData();
+    formData.append('files', file);
+    return this.httpClient.post<any>(`${this.recipesEndPoint.POST_UPLOAD_RECIPE_PICTURE(idRecipe)}`, formData);
+  }
+
 }

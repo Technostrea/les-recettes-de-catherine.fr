@@ -1,11 +1,14 @@
-import {Component, inject} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule} from "@angular/forms";
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UntilDestroy} from "@ngneat/until-destroy";
 import {IngredientService} from "@app/core/services/ingredient/ingredient.service";
+import {ToastrService} from "ngx-toastr";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-update-ingredient',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule
   ],
@@ -14,10 +17,12 @@ import {IngredientService} from "@app/core/services/ingredient/ingredient.servic
 })
 @UntilDestroy()
 export class CreateUpdateIngredientComponent {
+  private readonly toastrService = inject(ToastrService);
+  private readonly location = inject(Location);
   private fb = inject(FormBuilder);
   private ingredientService = inject(IngredientService);
   protected ingredientForm = this.fb.group({
-    nomIngredient: ['',]
+    nomIngredient: ['', Validators.required],
   });
 
   onSubmit() {
@@ -27,10 +32,7 @@ export class CreateUpdateIngredientComponent {
 
     const formData = this.ingredientForm.getRawValue();
 
-    console.log(formData)
-
-    this.ingredientService.createIngredient(formData).subscribe(value => {
-      console.log(value)})
+    this.ingredientService.createIngredient(formData);
   }
 
 }

@@ -26,4 +26,12 @@ export class RecipeIngredientService {
   createRecipeIngredient(ingredientDto: IngredientDto | any): Observable<RecipeIngredient> {
     return this.httpClient.post<RecipeIngredient>(`${this.recipesEndPoint.POST_STORE_RECIPE_INGREDIENT()}`, ingredientDto);
   }
+
+  getRecipeIngredientsByRecipe(recipeId: string): Observable<RecipeIngredient[]> {
+    return this.httpClient.get<RecipeIngredient[]>(`${this.recipesEndPoint.GET_RECIPE_INGREDIENT_BY_RECIPE(recipeId)}`)
+  }
+
+  deleteRecipeIngredient(recipeId: string, ingredientId: string): Observable<RecipeIngredient> {
+    return this.httpClient.delete<RecipeIngredient>(`${this.recipesEndPoint.DELETE_RECIPE_INGREDIENT(recipeId, ingredientId)}`);
+  }
 }

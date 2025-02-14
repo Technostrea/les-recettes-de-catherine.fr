@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {Recipe} from "@app/shared/models/recipe";
 import {TimeFormatPipe} from "@app/shared/pipes/time-format/time-format.pipe";
+import {environment} from "@env/environment";
 
 @Component({
   selector: 'app-recipe-item-card',
@@ -15,4 +16,5 @@ import {TimeFormatPipe} from "@app/shared/pipes/time-format/time-format.pipe";
 })
 export class RecipeItemCardComponent {
   @Input({required: true}) recipe: Recipe | undefined = undefined;
+  protected readonly environment = environment.endpoints.recipes;
 }

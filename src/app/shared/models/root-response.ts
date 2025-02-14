@@ -1,28 +1,16 @@
 export interface RootResponse<T> {
   content: T[]
-  pageable: Pageable
-  last: boolean
-  totalPages: number
-  totalElements: number
-  size: number
-  number: number
-  sort: Sort
-  first: boolean
-  numberOfElements: number
-  empty: boolean
+  status: string
+  code: number
+  message: string
+  meta: Meta
 }
 
-export interface Pageable {
-  pageNumber: number
-  pageSize: number
-  sort: Sort
-  offset: number
-  paged: boolean
-  unpaged: boolean
-}
-
-export interface Sort {
-  empty: boolean
-  sorted: boolean
-  unsorted: boolean
+export interface Meta {
+  total: number
+  lastPage: number
+  currentPage: string
+  perPage: string
+  prev: string
+  next: string
 }

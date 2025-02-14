@@ -13,15 +13,19 @@ export class StepService {
   private recipesEndPoint = environment.endpoints.step;
   private httpClient = inject(HttpClient);
 
-  get recipes(): Observable<RootResponse<Step>> {
+  get steps(): Observable<RootResponse<Step>> {
     return this.httpClient.get<RootResponse<Step>>(`${this.recipesEndPoint.GET_ALL_STEP()}`)
   }
 
-  getRecipesPaginate(page: number = 0, size: number = 10): Observable<RootResponse<Step>> {
+  getStepPaginate(page: number = 0, size: number = 10): Observable<RootResponse<Step>> {
     return this.httpClient.get<RootResponse<Step>>(`${this.recipesEndPoint.GET_ALL_STEP_PAGINATE(page, size)}`)
   }
 
-  createRecipe(stepDto: StepDto | any): Observable<Step> {
+  createStep(stepDto: StepDto | any): Observable<Step> {
     return this.httpClient.post<Step>(`${this.recipesEndPoint.POST_STORE_STEP()}`, stepDto);
+  }
+
+  deleteStep(id: string): Observable<Step> {
+    return this.httpClient.delete<Step>(`${this.recipesEndPoint.DELETE_STEP(id)}`);
   }
 }

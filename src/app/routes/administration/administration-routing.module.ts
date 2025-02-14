@@ -1,13 +1,19 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RecipeListComponent} from "@app/routes/administration/recipe-list/recipe-list.component";
-import {RecipeStoreComponent} from "@app/routes/administration/recipe-store/recipe-store.component";
+import {RecipeListComponent} from "@app/routes/administration/recipe/recipe-list/recipe-list.component";
+import {RecipeStoreComponent} from "@app/routes/administration/recipe/recipe-store/recipe-store.component";
 import {AdministrationComponent} from "@app/routes/administration/administration.component";
-import {IngredientListComponent} from "@app/routes/administration/ingredient-list/ingredient-list.component";
-import {IngredientStoreComponent} from "@app/routes/administration/ingredient-store/ingredient-store.component";
+import {IngredientListComponent} from "@app/routes/administration/ingredient/ingredient-list/ingredient-list.component";
+import {
+  IngredientStoreComponent
+} from "@app/routes/administration/ingredient/ingredient-store/ingredient-store.component";
 import {authGuard} from "@app/core/guards/authentication/auth.guard";
 import {ProfilComponent} from "@app/routes/administration/profil/profil.component";
 import {DashboardComponent} from "@app/routes/administration/dashboard/dashboard.component";
+import {StepStoreComponent} from "@app/routes/administration/step/step-store/step-store.component";
+import {
+  IngredientRecipeStoreComponent
+} from "@app/routes/administration/ingredient/ingredient-recipe-store/ingredient-recipe-store.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -16,12 +22,18 @@ const routes: Routes = [
     component: AdministrationComponent,
     canActivate: [authGuard],
     children: [
-      {path: '', redirectTo: 'dashboard',pathMatch:'full'},
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       {path: 'dashboard', title: 'Tableau de bord', component: DashboardComponent},
       {path: 'recipe-list', title: 'Mes recettes', component: RecipeListComponent},
       {path: 'recipe-store', title: 'Mettre à jour une recette', component: RecipeStoreComponent},
+      {path: 'step-store', title: 'Ajout des étapes de recette', component: StepStoreComponent},
       {path: 'ingredient-list', title: 'Mes ingredients', component: IngredientListComponent},
       {path: 'ingredient-store', title: 'Mettre à jour un ingredient', component: IngredientStoreComponent},
+      {
+        path: 'ingredient-recipe-store',
+        title: 'Ajout des ingredients de recette',
+        component: IngredientRecipeStoreComponent
+      },
       {path: 'profile', title: 'Mon profil', component: ProfilComponent},
     ]
   },
