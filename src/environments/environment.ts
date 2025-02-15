@@ -9,6 +9,7 @@ export const environment = {
       GET_RECIPE:(recipeId: string)=> `${environment.apiUrl}/recipe/${recipeId}`,
       GET_ALL_RECIPE_PAGINATE:(page:number=0,size:number=10)=> `${environment.apiUrl}/recipe/all?page=${page}&size=${size}`,
       POST_STORE_RECIPE:()=>`${environment.apiUrl}/recipe/create`,
+      POST_UPLOAD_RECIPE_PICTURE:(recipeId: string)=>`${environment.apiUrl}/recipe/uploadRecipePictures/${recipeId}`,
       PUT_RECIPE:(recipeId: string)=>`${environment.apiUrl}/recipe/update/${recipeId}`,
       DELETE_RECIPE:(recipeId: string)=>`${environment.apiUrl}/recipe/delete/${recipeId}`
     },
