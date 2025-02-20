@@ -4,15 +4,12 @@ import {IngredientService} from "@app/core/services/ingredient/ingredient.servic
 import {Ingredient} from "@app/shared/models/ingredient";
 import {UntilDestroy} from "@ngneat/until-destroy";
 import {RootResponse} from "@app/shared/models/root-response";
-import {JsonPipe, NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-ingredient-list',
   standalone: true,
   imports: [
-    RouterLink,
-    NgClass,
-    JsonPipe
+    RouterLink
   ],
   templateUrl: './ingredient-list.component.html',
   styleUrl: './ingredient-list.component.scss'

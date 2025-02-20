@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {environment} from "@env/environment.development";
+import {environment} from "@env/environment";
 import {HttpClient} from "@angular/common/http";
 import {RecipeDto} from "@app/shared/models/dto/recipe-dto";
 import {Observable} from "rxjs";
