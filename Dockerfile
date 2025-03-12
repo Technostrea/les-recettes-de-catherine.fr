@@ -25,7 +25,7 @@ RUN ng build --configuration=$ENVIRONMENT --output-path=dist/ --base-href /$BASE
 
 
 # ETAPE 2: Héberger l'application sur un serveur web nginx
-FROM nginx:1.26.0-alpine as server
+FROM nginx:1.26.0-alpine AS server
 EXPOSE 80
 
 WORKDIR /usr/share/nginx/html

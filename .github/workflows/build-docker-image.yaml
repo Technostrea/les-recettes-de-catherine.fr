@@ -43,7 +43,6 @@ jobs:
           push: true
           build-args: |
             BASE_REF=${{ secrets.BASE_REF }}
-          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ env.DOCKERHUB_REGISTRY }}/technostrea/recettes-de-catherine-frontend:dev-latest
             ${{ env.DOCKERHUB_REGISTRY }}/technostrea/recettes-de-catherine-frontend:dev-${{ github.run_number }}
